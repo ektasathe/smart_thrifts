@@ -140,7 +140,7 @@ class _CartFullState extends State<CartFull> {
                      ]
                    ),
                   ),
-                  child: Text('q',textAlign: TextAlign.center,),
+                  child: Text('154',textAlign: TextAlign.center,),
                  ),
                 ),
                 Material(
