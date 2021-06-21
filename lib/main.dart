@@ -4,23 +4,20 @@ import 'package:thrift_books/consts/theme_data.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/screens/bottom_bar.dart';
 
-void main() {
-  runApp(MyApp());
-
-}
-
 // ignore: must_be_immutable
-class MyApp extends StatefulWidget {
+void main() {}
+
+class Home extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _HomeState createState() => _HomeState();
 }
 
-
-class _MyAppState extends State<MyApp> {
+class _HomeState extends State<Home> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
-  void getCurrentAppTheme() async{
-    themeChangeProvider.darkTheme = await themeChangeProvider.darkThemePreferences.getTheme();
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreferences.getTheme();
   }
 
   @override
