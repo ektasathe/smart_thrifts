@@ -61,6 +61,21 @@ flutter:
     - android/assets/images/b2.jpg
     - android/assets/images/b3.jpg
     - android/assets/images/b4.jpg
+    - android/assets/images/book1.jpg
+    - android/assets/images/book2.jpg
+    - android/assets/images/book3.jpg
+    - android/assets/images/book4.jpg
+    - android/assets/images/geo.jpg
+    - android/assets/images/history.jpg
+    - android/assets/images/maths.jpg
+    - android/assets/images/sci.jpg
+    - android/assets/images/space.jpg
+    - android/assets/images/eng.jpg
+    - android/assets/images/lawyer.jpg
+    - android/assets/images/scientist.jpg
+    - android/assets/images/police.jpg
+    - android/assets/images/wishlist_empty.png
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

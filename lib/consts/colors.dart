@@ -9,6 +9,7 @@ class ColorsConsts {
 
   static Color cartColor = Color(0xFF5E35B1); //deep purple 600
   static Color cartBadgeColor = Color(0xFFBA68C8); //purple 300
+  static Color favColor = Color(0xFFE91E63); //red color
 
   static Color gradientendFStart = Color(0xFFE040FB); //purple accent
   static Color gradientendFEnd = Color(0xFFE1BEE7); //purple100

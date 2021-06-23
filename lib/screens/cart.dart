@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
@@ -9,10 +10,11 @@ import '../widget/cart_empty.dart';
 import '../widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
+  static const routeName = '/cart';
   @override
   Widget build(Object context) {
     List products = [];
-    return !products.isEmpty
+    return products.isNotEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkOutSection(context),

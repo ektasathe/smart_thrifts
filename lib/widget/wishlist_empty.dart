@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 
-class CartEmpty extends StatelessWidget {
-  static const routeName = '/cartempty';
+class WishlistEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -21,31 +20,37 @@ class CartEmpty extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('android/assets/images/emptycart.png'),
+              image: AssetImage('android/assets/images/wishlist_empty.png'),
             ),
           ),
         ),
-        Text(
-          'Your Cart Is Empty',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              // ignore: deprecated_member_use
-              color: Theme.of(context).textSelectionColor,
-              fontSize: 32, //36
-              fontWeight: FontWeight.w600),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          /* child: Text(
+            'Your Wishlist Is Empty',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                // ignore: deprecated_member_use
+                color: Theme.of(context).textSelectionColor,
+                fontSize: 32, //36
+                fontWeight: FontWeight.w600),
+          ),*/
         ),
         SizedBox(
           height: 30,
         ),
-        Text(
-          'Looks like you didn\'t \n add anything to your cart yet',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: themeChange.darkTheme
-                  ? Theme.of(context).disabledColor
-                  : ColorsConsts.subTitle,
-              fontSize: 22, //26
-              fontWeight: FontWeight.w600),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'Explore more and shortlist some items!!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: themeChange.darkTheme
+                    ? Theme.of(context).disabledColor
+                    : ColorsConsts.subTitle,
+                fontSize: 22, //26
+                fontWeight: FontWeight.w600),
+          ),
         ),
         // ignore: deprecated_member_use
         SizedBox(
@@ -62,7 +67,7 @@ class CartEmpty extends StatelessWidget {
                 side: BorderSide(color: Colors.red)),
             color: Colors.redAccent,
             child: Text(
-              'shop now'.toUpperCase(),
+              'Add a wish'.toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
                   // ignore: deprecated_member_use

@@ -3,7 +3,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/screens/wishlist.dart';
+
+import 'cart.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -83,7 +87,7 @@ class _UserScreenState extends State<UserScreen> {
                                     image: DecorationImage(
                                       fit: BoxFit.fill,
                                       image: NetworkImage(
-                                          'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.clipartkey.com%2Fmpngs%2Fm%2F152-1520367_user-profile-default-image-png-clipart-png-download.png&imgrefurl=https%3A%2F%2Fwww.clipartkey.com%2Fview%2FxmmbTT_user-profile-default-image-png-clipart-png-download%2F&tbnid=LCzZi7t2gezOPM&vet=12ahUKEwikyaKLxKDxAhVEXCsKHWp4Bw8QMygAegUIARC7AQ..i&docid=WL3gY9si39S9KM&w=900&h=785&q=default%20profile%20picture%20png&ved=2ahUKEwikyaKLxKDxAhVEXCsKHWp4Bw8QMygAegUIARC7AQ'),
+                                          "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"),
                                     ),
                                   ),
                                 ),
@@ -103,7 +107,7 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                       background: Image(
                         image: NetworkImage(
-                            'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.clipartkey.com%2Fmpngs%2Fm%2F152-1520367_user-profile-default-image-png-clipart-png-download.png&imgrefurl=https%3A%2F%2Fwww.clipartkey.com%2Fview%2FxmmbTT_user-profile-default-image-png-clipart-png-download%2F&tbnid=LCzZi7t2gezOPM&vet=12ahUKEwikyaKLxKDxAhVEXCsKHWp4Bw8QMygAegUIARC7AQ..i&docid=WL3gY9si39S9KM&w=900&h=785&q=default%20profile%20picture%20png&ved=2ahUKEwikyaKLxKDxAhVEXCsKHWp4Bw8QMygAegUIARC7AQ'),
+                            "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -115,6 +119,40 @@ class _UserScreenState extends State<UserScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: userTitle('User Bag'),
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(WishlistScreen.routeName),
+                          title: Text('Wishlist'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.wishlist),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(CartScreen.routeName),
+                          title: Text('Cart'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.cart),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: userTitle('User Information'),
