@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/theme_data.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/screens/bottom_bar.dart';
 import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/feeds.dart';
@@ -39,7 +40,10 @@ class _HomeState extends State<Home> {
         providers: [
           ChangeNotifierProvider(create: (_) {
             return themeChangeProvider;
-          })
+          }),
+          ChangeNotifierProvider(create: (_) =>
+            Products(),
+          )
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {

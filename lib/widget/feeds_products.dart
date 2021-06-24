@@ -1,26 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
+import 'package:thrift_books/models/product.dart';
 
 class FeedProducts extends StatefulWidget {
-  const FeedProducts(
-      {Key key,
-      @required this.id,
-      @required this.description,
-      @required this.price,
-      @required this.imageUrl,
-      @required this.quantity,
-      @required this.isFavorite})
-      : super(key: key);
 
-  final String id;
-
-  final String description;
-  final double price;
-  final String imageUrl;
-
-  final int quantity;
-  final bool isFavorite;
 
   @override
   _FeedProductsState createState() => _FeedProductsState();
@@ -29,6 +14,7 @@ class FeedProducts extends StatefulWidget {
 class _FeedProductsState extends State<FeedProducts> {
   @override
   Widget build(BuildContext context) {
+    final productsAttributes= Provider.of<Product>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
@@ -52,7 +38,7 @@ class _FeedProductsState extends State<FeedProducts> {
                           maxHeight: MediaQuery.of(context).size.height * 0.3),
                       child: Image.network(
                         //'https://img.apmcdn.org/ccb42f129cf5ff018d724098c52aca1a825e20bc/uncropped/03ced2-20150819-books.jpg',
-                        widget.imageUrl,
+                        productsAttributes.imageUrl,
                         // fit: BoxFit.fitWidth,
                       ),
                     ),
@@ -78,7 +64,7 @@ class _FeedProductsState extends State<FeedProducts> {
                       height: 4,
                     ),
                     Text(
-                      widget.description,
+                      productsAttributes.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -89,7 +75,7 @@ class _FeedProductsState extends State<FeedProducts> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        '\$ ${widget.price}',
+                        '\$ ${productsAttributes.price}',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(
@@ -102,7 +88,7 @@ class _FeedProductsState extends State<FeedProducts> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${widget.quantity}',
+                          '${productsAttributes.quantity}',
                           style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
