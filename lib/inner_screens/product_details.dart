@@ -174,6 +174,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
+                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -272,6 +273,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 3,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -288,6 +290,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 2,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -299,6 +302,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             'Buy now'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
+                                // ignore: deprecated_member_use
                                 color: Theme.of(context).textSelectionColor),
                           ),
                           SizedBox(
@@ -348,6 +352,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
+                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),

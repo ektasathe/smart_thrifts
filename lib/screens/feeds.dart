@@ -7,9 +7,9 @@ import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/widget/feeds_products.dart';
 
 // ignore: must_be_immutable
-class FeedsScreen extends StatelessWidget {
+class Feeds extends StatelessWidget {    //FeedsScreen
 
-  static const routeName = '/feeds';
+  static const routeName = '/Feeds';
   @override
   Widget build(Object context) {
     // ignore: todo

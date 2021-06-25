@@ -47,17 +47,19 @@ class _HomeState extends State<Home> {
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
-          return MaterialApp(
+
+              return MaterialApp(
               title: 'Flutter Demo',
               theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-              home: BottomBarScreen(),
+               home: BottomBarScreen(),
               // initialRoute: "/",
               routes: {
                 //   '/': (ctx) => LandingPage(),
                 BrandNavigationRailScreen.routeName: (ctx) =>
                     BrandNavigationRailScreen(),
                 CartScreen.routeName: (ctx) => CartScreen(),
-                FeedsScreen.routeName: (ctx) => FeedsScreen(),
+              //  FeedsScreen.routeName: (ctx) => FeedsScreen(),
+                Feeds.routeName: (ctx) => Feeds(),
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
                 ProductDetails.routeName: (ctx) => ProductDetails(),
               });

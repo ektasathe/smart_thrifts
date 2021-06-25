@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:thrift_books/screens/feeds.dart';
 
 // ignore: must_be_immutable
-class CategoryWidget extends StatelessWidget {
+class CategoryWidget extends StatefulWidget {
   CategoryWidget({Key key, this.index}) : super(key: key);
   final int index;
+
+  
+  @override
+  _CategoryWidgetState createState() => _CategoryWidgetState();
+}
+
+
+class _CategoryWidgetState extends  State<CategoryWidget> {
+
   List<Map<String, Object>> categories = [
     {
       'categoryName': 'Engineering',
@@ -41,16 +51,22 @@ class CategoryWidget extends StatelessWidget {
     // TODO: implement build
     return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(categories[index]['categoryImagesPath']),
-                fit: BoxFit.cover),
+        InkWell(
+          onTap: (){
+           // Navigator.of(context).pushNamed(Feeds.routeName , arguments: '${categories[widget.index]['categoryName']}');
+            print('${categories[widget.index]['categoryName']}');
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                  image: AssetImage(categories[widget.index]['categoryImagesPath']),
+                  fit: BoxFit.cover),
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            width: 150,
+            height: 150,
           ),
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          width: 150,
-          height: 150,
         ),
         Positioned(
           bottom: 0,
@@ -60,7 +76,7 @@ class CategoryWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             color: Theme.of(context).backgroundColor,
             child: Text(
-              categories[index]['categoryName'],
+              categories[widget.index]['categoryName'],
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
@@ -74,3 +90,5 @@ class CategoryWidget extends StatelessWidget {
     );
   }
 }
+
+
