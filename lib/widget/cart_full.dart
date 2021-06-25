@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:ECommerceApp/consts/colors.dart';
+import 'package:ECommerceApp/provider/dark_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_books/consts/colors.dart';
-import 'package:thrift_books/provider/dark_theme_provider.dart';
 
 class CartFull extends StatefulWidget {
   @override
@@ -31,7 +30,7 @@ class _CartFullState extends State<CartFull> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    'https://img.apmcdn.org/ccb42f129cf5ff018d724098c52aca1a825e20bc/uncropped/03ced2-20150819-books.jpg'),
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PdHtXka2-bDDww6Nuect3Mt9IwpE4v4HNw&usqp=CAU'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -47,7 +46,7 @@ class _CartFullState extends State<CartFull> {
                       Flexible(
                         child: Text(
                           'title',
-                          maxLines: 1,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 15),
@@ -57,7 +56,7 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(32.0),
-                          //splashColor: ,
+                          // splashColor: ,
                           onTap: () {},
                           child: Container(
                             height: 50,
@@ -65,7 +64,7 @@ class _CartFullState extends State<CartFull> {
                             child: Icon(
                               Entypo.cross,
                               color: Colors.red,
-                              size: 24,
+                              size: 22,
                             ),
                           ),
                         ),
@@ -74,7 +73,7 @@ class _CartFullState extends State<CartFull> {
                   ),
                   Row(
                     children: [
-                      Text('Price'),
+                      Text('Price:'),
                       SizedBox(
                         width: 5,
                       ),
@@ -116,7 +115,7 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
-                          //splashColor: ,
+                          // splashColor: ,
                           onTap: () {},
                           child: Container(
                             child: Padding(
@@ -134,7 +133,7 @@ class _CartFullState extends State<CartFull> {
                         elevation: 12,
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.12,
-                          padding: const EdgeInsets.all(4.0), //8.0
+                          padding: const EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(colors: [
                               ColorsConsts.gradiendLStart,
@@ -154,7 +153,7 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
-                          //splashColor: ,
+                          // splashColor: ,
                           onTap: () {},
                           child: Container(
                             child: Padding(
@@ -173,7 +172,7 @@ class _CartFullState extends State<CartFull> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

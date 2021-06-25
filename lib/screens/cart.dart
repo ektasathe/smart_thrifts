@@ -1,23 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:ECommerceApp/consts/colors.dart';
+import 'package:ECommerceApp/consts/my_icons.dart';
+import 'package:ECommerceApp/widget/cart_empty.dart';
+import 'package:ECommerceApp/widget/cart_full.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:thrift_books/consts/colors.dart';
-import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/widget/cart_empty.dart';
-
-import '../widget/cart_empty.dart';
-import '../widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
-  static const routeName = '/cart';
+  static const routeName = '/CartScreen';
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     List products = [];
-    return products.isNotEmpty
+    return products.isEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
-            bottomSheet: checkOutSection(context),
+            bottomSheet: checkoutSection(context),
             appBar: AppBar(
               title: Text('Cart Items Count'),
               actions: [
@@ -30,15 +25,15 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (BuildContext ctx, int index) {
-                  return CartFull();
-                },
-              ),
-            ));
+                  itemCount: 5,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return CartFull();
+                  }),
+            ),
+          );
   }
 
-  Widget checkOutSection(BuildContext ctx) {
+  Widget checkoutSection(BuildContext ctx) {
     return Container(
         decoration: BoxDecoration(
           border: Border(
@@ -48,10 +43,10 @@ class CartScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            //    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            /// mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                //  flex: 2,
+                flex: 2,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
@@ -68,14 +63,13 @@ class CartScreen extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30),
                       onTap: () {},
-                      // ignore: deprecated_member_use
+                      splashColor: Theme.of(ctx).splashColor,
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0), //8.0
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Checkout',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              // ignore: deprecated_member_use
                               color: Theme.of(ctx).textSelectionColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600),
@@ -87,18 +81,16 @@ class CartScreen extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                'Total',
+                'Total:',
                 style: TextStyle(
-                    // ignore: deprecated_member_use
                     color: Theme.of(ctx).textSelectionColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600),
               ),
               Text(
                 'US \$179.0',
-                // textAlign: TextAlign.center ,
+                //textAlign: TextAlign.center,
                 style: TextStyle(
-                    // ignore: deprecated_member_use
                     color: Colors.blue,
                     fontSize: 18,
                     fontWeight: FontWeight.w500),

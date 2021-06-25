@@ -1,13 +1,16 @@
+import 'package:ECommerceApp/provider/products.dart';
 import 'package:flutter/material.dart';
-import 'package:thrift_books/inner_screens/brands_rail_widgets.dart';
+import 'package:provider/provider.dart';
+
+import 'brands_rail_widget.dart';
 
 class BrandNavigationRailScreen extends StatefulWidget {
   BrandNavigationRailScreen({Key key}) : super(key: key);
 
+  static const routeName = '/brands_navigation_rail';
   @override
   _BrandNavigationRailScreenState createState() =>
       _BrandNavigationRailScreenState();
-  static const routeName = '/brands_navigation_rail';
 }
 
 class _BrandNavigationRailScreenState extends State<BrandNavigationRailScreen> {
@@ -202,6 +205,15 @@ class ContentSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productsData = Provider.of<Products>(context, listen: false);
+    final productsBrand = productsData.findByBrand(brand);
+    if(brand=='All'){
+      for(int i=0; i<productsData.products.length;i++){
+        productsBrand.add(productsData.products[i]);
+      }
+    }
+    print('productsBrand ${productsBrand[0].imageUrl}');
+    print('brand $brand');
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(24, 8, 0, 0),
@@ -209,9 +221,10 @@ class ContentSpace extends StatelessWidget {
           removeTop: true,
           context: context,
           child: ListView.builder(
-            itemCount: 5,
+            itemCount: productsBrand.length,
             itemBuilder: (BuildContext context, int index) =>
-                BrandsNavigationRail(),
+                ChangeNotifierProvider.value(
+                    value: productsBrand[index], child: BrandsNavigationRail()),
           ),
         ),
       ),

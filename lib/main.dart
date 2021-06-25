@@ -1,25 +1,26 @@
+import 'package:ECommerceApp/consts/theme_data.dart';
+import 'package:ECommerceApp/inner_screens/product_details.dart';
+import 'package:ECommerceApp/provider/dark_theme_provider.dart';
+import 'package:ECommerceApp/provider/products.dart';
+import 'package:ECommerceApp/screens/bottom_bar.dart';
+import 'package:ECommerceApp/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_books/consts/theme_data.dart';
-import 'package:thrift_books/inner_screens/product_details.dart';
-import 'package:thrift_books/provider/dark_theme_provider.dart';
-import 'package:thrift_books/provider/products.dart';
-import 'package:thrift_books/screens/bottom_bar.dart';
-import 'package:thrift_books/screens/cart.dart';
-import 'package:thrift_books/screens/feeds.dart';
-import 'package:thrift_books/screens/wishlist.dart';
+import 'inner_screens/brands_navigation_rail.dart';
+import 'inner_screens/categories_feeds.dart';
+import 'screens/cart.dart';
+import 'screens/feeds.dart';
 
-import 'inner_screens/brands_navigation_rail copy.dart';
-
-// ignore: must_be_immutable
-void main() => runApp(Home());
-
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
+void main() {
+  runApp(MyApp());
 }
 
-class _HomeState extends State<Home> {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void getCurrentAppTheme() async {
@@ -30,7 +31,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     getCurrentAppTheme();
-
     super.initState();
   }
 
@@ -41,28 +41,28 @@ class _HomeState extends State<Home> {
           ChangeNotifierProvider(create: (_) {
             return themeChangeProvider;
           }),
-          ChangeNotifierProvider(create: (_) =>
-            Products(),
+          ChangeNotifierProvider(
+            create: (_) => Products(),
           )
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
-
-              return MaterialApp(
-              title: 'Flutter Demo',
-              theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-               home: BottomBarScreen(),
-              // initialRoute: "/",
-              routes: {
-                //   '/': (ctx) => LandingPage(),
-                BrandNavigationRailScreen.routeName: (ctx) =>
-                    BrandNavigationRailScreen(),
-                CartScreen.routeName: (ctx) => CartScreen(),
-              //  FeedsScreen.routeName: (ctx) => FeedsScreen(),
-                Feeds.routeName: (ctx) => Feeds(),
-                WishlistScreen.routeName: (ctx) => WishlistScreen(),
-                ProductDetails.routeName: (ctx) => ProductDetails(),
-              });
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+            home: BottomBarScreen(),
+            //initialRoute: '/',
+            routes: {
+              //   '/': (ctx) => LandingPage(),
+              BrandNavigationRailScreen.routeName: (ctx) =>
+                  BrandNavigationRailScreen(),
+              CartScreen.routeName: (ctx) => CartScreen(),
+              Feeds.routeName: (ctx) => Feeds(),
+              WishlistScreen.routeName: (ctx) => WishlistScreen(),
+              ProductDetails.routeName: (ctx) => ProductDetails(),
+              CategoriesFeedsScreen.routeName: (ctx) => CategoriesFeedsScreen(),
+            },
+          );
         }));
   }
 }

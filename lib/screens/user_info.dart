@@ -1,28 +1,25 @@
+import 'package:ECommerceApp/consts/colors.dart';
+import 'package:ECommerceApp/consts/my_icons.dart';
+import 'package:ECommerceApp/provider/dark_theme_provider.dart';
+import 'package:ECommerceApp/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_books/consts/colors.dart';
-import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/provider/dark_theme_provider.dart';
-import 'package:thrift_books/screens/wishlist.dart';
 
-import 'cart.dart';
-
-class UserScreen extends StatefulWidget {
+class UserInfo extends StatefulWidget {
   @override
-  _UserScreenState createState() => _UserScreenState();
+  _UserInfoState createState() => _UserInfoState();
 }
 
-class _UserScreenState extends State<UserScreen> {
-  ScrollController _scrollcontroller;
+class _UserInfoState extends State<UserInfo> {
+  ScrollController _scrollController;
   var top = 0.0;
-
   @override
   void initState() {
     super.initState();
-    _scrollcontroller = ScrollController();
-    _scrollcontroller.addListener(() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
       setState(() {});
     });
   }
@@ -30,13 +27,11 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
-    // ignore: todo
-    // TODO: implement build
     return Scaffold(
       body: Stack(
         children: [
           CustomScrollView(
-            controller: _scrollcontroller,
+            controller: _scrollController,
             slivers: <Widget>[
               SliverAppBar(
                 automaticallyImplyLeading: false,
@@ -54,7 +49,7 @@ class _UserScreenState extends State<UserScreen> {
                             ColorsConsts.endColor,
                           ],
                           begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(0.0, 0.0),
+                          end: const FractionalOffset(1.0, 0.0),
                           stops: [0.0, 1.0],
                           tileMode: TileMode.clamp),
                     ),
@@ -62,11 +57,11 @@ class _UserScreenState extends State<UserScreen> {
                       collapseMode: CollapseMode.parallax,
                       centerTitle: true,
                       title: Row(
-                        //mainAxisAlignment : MainAxisAlignment.spaceAround,
+                        //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           AnimatedOpacity(
-                            duration: Duration(microseconds: 300),
+                            duration: Duration(milliseconds: 300),
                             opacity: top <= 110.0 ? 1.0 : 0,
                             child: Row(
                               children: [
@@ -87,7 +82,7 @@ class _UserScreenState extends State<UserScreen> {
                                     image: DecorationImage(
                                       fit: BoxFit.fill,
                                       image: NetworkImage(
-                                          "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"),
+                                          'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                                     ),
                                   ),
                                 ),
@@ -95,19 +90,19 @@ class _UserScreenState extends State<UserScreen> {
                                   width: 12,
                                 ),
                                 Text(
-                                  //'top.toString()',
+                                  // 'top.toString()',
                                   'Guest',
                                   style: TextStyle(
                                       fontSize: 20.0, color: Colors.white),
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                       background: Image(
                         image: NetworkImage(
-                            "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"),
+                            'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -120,9 +115,8 @@ class _UserScreenState extends State<UserScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: userTitle('User Bag'),
-                    ),
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: userTitle('User Bag')),
                     Divider(
                       thickness: 1,
                       color: Colors.grey,
@@ -132,21 +126,21 @@ class _UserScreenState extends State<UserScreen> {
                       child: InkWell(
                         splashColor: Theme.of(context).splashColor,
                         child: ListTile(
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(WishlistScreen.routeName),
+                          onTap: () => Navigator.of(context).pushNamed(
+                            WishlistScreen.routeName
+                          ),
                           title: Text('Wishlist'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.wishlist),
                         ),
                       ),
                     ),
-                    Material(
+                     Material(
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: Theme.of(context).splashColor,
                         child: ListTile(
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(CartScreen.routeName),
+                          onTap: () {},
                           title: Text('Cart'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.cart),
@@ -154,9 +148,8 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: userTitle('User Information'),
-                    ),
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: userTitle('User Information')),
                     Divider(
                       thickness: 1,
                       color: Colors.grey,
@@ -167,7 +160,7 @@ class _UserScreenState extends State<UserScreen> {
                     userListTile('joined date', 'date', 3, context),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: userTitle('User Settings'),
+                      child: userTitle('User settings'),
                     ),
                     Divider(
                       thickness: 1,
@@ -184,7 +177,7 @@ class _UserScreenState extends State<UserScreen> {
                       visualDensity: VisualDensity.comfortable,
                       switchType: SwitchType.cupertino,
                       switchActiveColor: Colors.indigo,
-                      title: Text('Dark Theme'),
+                      title: Text('Dark theme'),
                     ),
                     userListTile('Logout', '', 4, context),
                   ],
@@ -208,14 +201,14 @@ class _UserScreenState extends State<UserScreen> {
 
     double top = defaultTopMargin;
     double scale = 1.0;
-    if (_scrollcontroller.hasClients) {
-      double offset = _scrollcontroller.offset;
+    if (_scrollController.hasClients) {
+      double offset = _scrollController.offset;
       top -= offset;
       if (offset < defaultTopMargin - scaleStart) {
-        //offset small=> dont scale down
+        //offset small => don't scale down
         scale = 1.0;
       } else if (offset < defaultTopMargin - scaleEnd) {
-        //offset between scalestart and scaleend => scale down
+        //offset between scaleStart and scaleEnd => scale down
         scale = (defaultTopMargin - scaleEnd - offset) / scaleEnd;
       } else {
         //offset passed scaleEnd => hide fab
@@ -244,7 +237,7 @@ class _UserScreenState extends State<UserScreen> {
     Icons.phone,
     Icons.local_shipping,
     Icons.watch_later,
-    Icons.exit_to_app_rounded,
+    Icons.exit_to_app_rounded
   ];
 
   Widget userListTile(

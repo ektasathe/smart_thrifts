@@ -1,11 +1,13 @@
+import 'dart:ui';
+import 'package:ECommerceApp/consts/colors.dart';
+import 'package:ECommerceApp/consts/my_icons.dart';
+import 'package:ECommerceApp/provider/dark_theme_provider.dart';
+import 'package:ECommerceApp/provider/products.dart';
+import 'package:ECommerceApp/screens/cart.dart';
+import 'package:ECommerceApp/screens/wishlist.dart';
+import 'package:ECommerceApp/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_books/consts/colors.dart';
-import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/provider/dark_theme_provider.dart';
-import 'package:thrift_books/screens/cart.dart';
-import 'package:thrift_books/screens/wishlist.dart';
-import 'package:thrift_books/widget/feeds_products.dart';
 
 class ProductDetails extends StatefulWidget {
   static const routeName = '/ProductDetails';
@@ -20,6 +22,11 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
+    final productsData = Provider.of<Products>(context);
+    final productId = ModalRoute.of(context).settings.arguments as String;
+    print('productId $productId');
+    final prodAttr =productsData.findById(productId);
+    final productsList = productsData.products;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -28,7 +35,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             height: MediaQuery.of(context).size.height * 0.45,
             width: double.infinity,
             child: Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PdHtXka2-bDDww6Nuect3Mt9IwpE4v4HNw&usqp=CAU',
+              prodAttr.imageUrl,
             ),
           ),
           SingleChildScrollView(
@@ -91,7 +98,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: Text(
-                                'title',
+                                prodAttr.title,
                                 maxLines: 2,
                                 style: TextStyle(
                                   // color: Theme.of(context).textSelectionColor,
@@ -104,7 +111,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               height: 8,
                             ),
                             Text(
-                              'US \$ 15',
+                              'US \$ ${prodAttr.price}',
                               style: TextStyle(
                                   color: themeState.darkTheme
                                       ? Theme.of(context).disabledColor
@@ -129,7 +136,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          'Description',
+                          prodAttr.description,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 21.0,
@@ -148,10 +155,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                           height: 1,
                         ),
                       ),
-                      _details(themeState.darkTheme, 'Brand: ', 'BrandName'),
-                      _details(themeState.darkTheme, 'Quantity: ', '12 Left'),
-                      _details(themeState.darkTheme, 'Category: ', 'Cat Name'),
-                      _details(themeState.darkTheme, 'Popularity: ', 'Popular'),
+                      _details(themeState.darkTheme, 'Brand: ', prodAttr.brand),
+                      _details(themeState.darkTheme, 'Quantity: ', '${prodAttr.quantity}'),
+                      _details(themeState.darkTheme, 'Category: ', prodAttr.productCategoryName),
+                      _details(themeState.darkTheme, 'Popularity: ', prodAttr.isPopular? 'Popular' : 'Barely known'),
                       SizedBox(
                         height: 15,
                       ),
@@ -174,7 +181,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
-                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -220,12 +226,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Container(
                   margin: EdgeInsets.only(bottom: 30),
                   width: double.infinity,
-                  height: 300,
+                  height: 340,
                   child: ListView.builder(
                     itemCount: 7,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext ctx, int index) {
-                      return FeedProducts();
+                      return ChangeNotifierProvider.value(
+                          value: productsList[index], child: FeedProducts());
                     },
                   ),
                 ),
@@ -243,7 +250,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 title: Text(
                   "DETAIL",
                   style:
-                  TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
                 ),
                 actions: <Widget>[
                   IconButton(
@@ -273,7 +280,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 3,
                   child: Container(
                     height: 50,
-                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -290,7 +296,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 2,
                   child: Container(
                     height: 50,
-                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -302,7 +307,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                             'Buy now'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
-                                // ignore: deprecated_member_use
                                 color: Theme.of(context).textSelectionColor),
                           ),
                           SizedBox(
@@ -352,7 +356,6 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
-                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),

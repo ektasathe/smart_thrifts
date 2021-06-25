@@ -1,4 +1,4 @@
-import 'package:thrift_books/consts/colors.dart';
+import 'package:ECommerceApp/consts/colors.dart';
 import 'package:flutter/material.dart';
 
 class WishlistFull extends StatefulWidget {
@@ -74,7 +74,7 @@ class _WishlistFullState extends State<WishlistFull> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
           padding: EdgeInsets.all(0.0),
-          color: ColorsConsts.black,
+          color: ColorsConsts.favColor,
           child: Icon(
             Icons.clear,
             color: Colors.white,

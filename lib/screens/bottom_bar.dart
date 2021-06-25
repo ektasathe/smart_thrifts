@@ -1,101 +1,102 @@
+import 'package:ECommerceApp/consts/my_icons.dart';
+import 'package:ECommerceApp/screens/search.dart';
+import 'package:ECommerceApp/screens/user_info.dart';
 import 'package:flutter/material.dart';
 
-import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/screens/cart.dart';
-import 'package:thrift_books/screens/search.dart';
-import 'package:thrift_books/screens/user_info.dart';
-
+import 'cart.dart';
 import 'feeds.dart';
 import 'home.dart';
 
 class BottomBarScreen extends StatefulWidget {
-  static const routeName = '/BottomBarScreen';
-
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  // List _pages = [
-// HomeScreen(),
-  //   FeedsScreen(),
-  //  SearchScreen(),
-  // CartScreen(),
-  // UserScreen(),
-  // ];
-
   List<Map<String, Object>> _pages;
-  int _selectedIndex = 0;
+  int _selectedPageIndex = 0;
+
   @override
   void initState() {
     _pages = [
-      {'page': HomeScreen(), 'title': 'Home Screen'},
-      {'page': Feeds(), 'title': 'Feeds Screen'},
-      {'page': SearchScreen(), 'title': 'Search Screen'},
-      {'page': CartScreen(), 'title': 'CartScreen'},
-      {'page': UserScreen(), 'title': 'UserScreen'},
+      {
+        'page': Home(),
+      },
+      {
+        'page': Feeds(),
+      },
+      {
+        'page': Search(),
+      },
+      {
+        'page': CartScreen(),
+      },
+      {
+        'page': UserInfo(),
+      },
     ];
     super.initState();
   }
 
-  void _selectedPage(int index) {
+  void _selectPage(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedPageIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(
-      //centerTitle: true,
-      //title: Text(_pages[_selectedIndex]['title']),
-      //),
-      body: _pages[_selectedIndex]['page'],
+      body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomAppBar(
-        notchMargin: 3,
-        clipBehavior: Clip.antiAlias,
-        // elevation: 5,
+        // color: Colors.white,
         shape: CircularNotchedRectangle(),
+        notchMargin: 0.01,
+        clipBehavior: Clip.antiAlias,
         child: Container(
-          // height: kBottomNavigationBarHeight,
-          decoration:
-              BoxDecoration(border: Border(top: BorderSide(width: 0.5))),
-          child: BottomNavigationBar(
-            onTap: _selectedPage,
-            backgroundColor: Theme.of(context).primaryColor,
-            // ignore: deprecated_member_use
-            unselectedItemColor: Theme.of(context).textSelectionColor,
-            selectedItemColor: Colors.purple,
-            currentIndex: _selectedIndex,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(MyAppIcons.home),
-                tooltip: 'Home',
-                label: 'Home',
+          height: kBottomNavigationBarHeight * 0.98,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(MyAppIcons.rss),
-                tooltip: 'Feeds',
-                label: 'Feeds',
-              ),
-              BottomNavigationBarItem(
-                activeIcon: null,
-                icon: Icon(null),
-                tooltip: 'Search',
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(MyAppIcons.bag),
-                tooltip: 'Cart',
-                label: 'Cart',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(MyAppIcons.user),
-                tooltip: 'User',
-                label: 'User',
-              ),
-            ],
+            ),
+            child: BottomNavigationBar(
+              onTap: _selectPage,
+              backgroundColor: Theme.of(context).primaryColor,
+              unselectedItemColor: Theme.of(context).textSelectionColor,
+              selectedItemColor: Colors.purple,
+              currentIndex: _selectedPageIndex,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(MyAppIcons.home),
+                  title: Text('Home'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(MyAppIcons.rss),
+                  title: Text('Feeds'),
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: null,
+                  icon: Icon(null),
+                  title: Text('Search'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    MyAppIcons.bag,
+                  ),
+                  title: Text('Cart'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(MyAppIcons.user),
+                  title: Text('User'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -108,13 +109,11 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           hoverElevation: 10,
           splashColor: Colors.grey,
           tooltip: 'Search',
-          elevation: 5,
-          child: (Icon(MyAppIcons.search)),
-          onPressed: () {
-            setState(() {
-              _selectedIndex = 2;
-            });
-          },
+          elevation: 4,
+          child: Icon(MyAppIcons.search),
+          onPressed: () => setState(() {
+            _selectedPageIndex = 2;
+          }),
         ),
       ),
     );

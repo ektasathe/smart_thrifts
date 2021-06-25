@@ -12,15 +12,5 @@ class Product with ChangeNotifier{
   final bool isFavorite;
   final bool isPopular;
 
-  Product(
-      {this.id,
-      this.title,
-      this.description,
-      this.price,
-      this.imageUrl,
-      this.productCategoryName,
-      this.brand,
-      this.quantity,
-      this.isFavorite,
-      this.isPopular});
+  Product({this.id, this.title, this.description, this.price, this.imageUrl, this.productCategoryName, this.brand, this.quantity, this.isFavorite, this.isPopular});
 }
