@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:thrift_books/inner_screens/categories_feeds.dart';
 import 'package:thrift_books/screens/feeds.dart';
 
-
 class CategoryWidget extends StatefulWidget {
   CategoryWidget({Key key, this.index}) : super(key: key);
   final int index;
@@ -15,31 +14,31 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   List<Map<String, Object>> categories = [
     {
       'categoryName': 'Phones',
-      'categoryImagesPath': 'assets/images/CatPhones.png',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Clothes',
-      'categoryImagesPath': 'assets/images/CatClothes.jpg',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Shoes',
-      'categoryImagesPath': 'assets/images/CatShoes.jpg',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Beauty&Health',
-      'categoryImagesPath': 'assets/images/CatBeauty.jpg',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Laptops',
-      'categoryImagesPath': 'assets/images/CatLaptops.png',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Furniture',
-      'categoryImagesPath': 'assets/images/CatFurniture.jpg',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
     {
       'categoryName': 'Watches',
-      'categoryImagesPath': 'assets/images/CatWatches.jpg',
+      'categoryImagesPath': 'lib/assets/images/b1.jpg',
     },
   ];
 
@@ -48,16 +47,17 @@ class _CategoryWidgetState extends State<CategoryWidget> {
     return Stack(
       children: [
         InkWell(
-          onTap: (){
-            Navigator.of(context).pushNamed(CategoriesFeedsScreen.routeName, arguments: '${categories[widget.index]['categoryName']}');
-            
+          onTap: () {
+            Navigator.of(context).pushNamed(CategoriesFeedsScreen.routeName,
+                arguments: '${categories[widget.index]['categoryName']}');
           },
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: AssetImage(categories[widget.index]['categoryImagesPath']),
-              fit: BoxFit.cover),
+                  image: AssetImage(
+                      categories[widget.index]['categoryImagesPath']),
+                  fit: BoxFit.cover),
             ),
             margin: EdgeInsets.symmetric(horizontal: 10),
             width: 150,

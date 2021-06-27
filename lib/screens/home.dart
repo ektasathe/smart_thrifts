@@ -14,6 +14,7 @@ import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/widget/backlayer.dart';
 import 'package:thrift_books/widget/category.dart';
 import 'package:thrift_books/widget/popular_products.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -21,20 +22,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List _carouselImages = [
-    'assets/images/carousel1.png',
-    'assets/images/carousel2.jpeg',
-    'assets/images/carousel3.jpg',
-    'assets/images/carousel4.png',
+    'lib/assets/images/b2.jpg',
+    'lib/assets/images/b1.jpg',
+    'lib/assets/images/b3.jpg',
+    'lib/assets/images/b4.jpg',
   ];
 
   List _brandImages = [
-    'assets/images/addidas.jpg',
-    'assets/images/apple.jpg',
-    'assets/images/dell.jpg',
-    'assets/images/h&m.jpg',
-    'assets/images/nike.jpg',
-    'assets/images/samsung.jpg',
-    'assets/images/huawei.jpg',
+    'lib/assets/images/book1.jpg',
+    'lib/assets/images/book2.jpg',
+    'lib/assets/images/book3.jpg',
+    'lib/assets/images/book4.jpg',
+    'lib/assets/images/b1.jpg',
+    'lib/assets/images/b2.jpg',
+    'lib/assets/images/b3.jpg',
   ];
   @override
   Widget build(BuildContext context) {

@@ -38,7 +38,8 @@ class PopularProducts extends StatelessWidget {
               ),
               bottomRight: Radius.circular(10.0),
             ),
-             onTap: () =>Navigator.pushNamed(context, ProductDetails.routeName, arguments:productsAttributes.id ),
+            onTap: () => Navigator.pushNamed(context, ProductDetails.routeName,
+                arguments: productsAttributes.id),
             child: Column(
               children: [
                 Stack(
@@ -51,8 +52,8 @@ class PopularProducts extends StatelessWidget {
                               fit: BoxFit.contain)),
                     ),
                     Positioned(
-                      right: 12,
-                      top: 10,
+                      right: 10,
+                      top: 8,
                       child: Icon(
                         Entypo.star,
                         color: Colors.grey.shade800,
@@ -60,7 +61,7 @@ class PopularProducts extends StatelessWidget {
                     ),
                     Positioned(
                       right: 10,
-                      top: 7,
+                      top: 8,
                       child: Icon(
                         Entypo.star_outlined,
                         color: Colors.white,
