@@ -14,13 +14,13 @@ class CartEmpty extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 80),
+          margin: EdgeInsets.only(top: 60), //  80
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.4,
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/images/emptycart.png'),
+              image: AssetImage('android/assets/images/emptycart.png'),
             ),
           ),
         ),
@@ -30,7 +30,7 @@ class CartEmpty extends StatelessWidget {
           style: TextStyle(
             // ignore: deprecated_member_use
               color: Theme.of(context).textSelectionColor,
-              fontSize: 36,
+              fontSize: 32,  //     36,
               fontWeight: FontWeight.w600),
         ),
         SizedBox(
@@ -43,7 +43,7 @@ class CartEmpty extends StatelessWidget {
               color: themeChange.darkTheme
                   ? Theme.of(context).disabledColor
                   : ColorsConsts.subTitle,
-              fontSize: 26,
+              fontSize: 22,   //26,
               fontWeight: FontWeight.w600),
         ),
         SizedBox(
