@@ -1,10 +1,12 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/provider/card_provider.dart';
+import 'package:thrift_books/services/global_method.dart';
 import 'package:thrift_books/widget/cart_empty.dart';
 
 import '../widget/cart_empty.dart';
@@ -14,16 +16,26 @@ class CartScreen extends StatelessWidget {
   static const routeName = '/CartScreen';
   @override
   Widget build(BuildContext context) {
-    List products = [];
-    return products.isEmpty
+    GlobalMethods globalMethods = GlobalMethods();
+    final cartProvider = Provider.of<CartProvider>(context);
+
+    return cartProvider.getCartItems.isEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
-            bottomSheet: checkoutSection(context),
+            bottomSheet: checkoutSection(context, cartProvider.totalAmount),
             appBar: AppBar(
-              title: Text('Cart Items Count'),
+              backgroundColor: Theme.of(context).backgroundColor,
+              title: Text('Cart (${cartProvider.getCartItems.length})'),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    globalMethods.showDialogg(
+                        'Clear cart!',
+                        'Your cart will be cleared!',
+                        () => cartProvider.clearCart(),
+                        context);
+                    // cartProvider.clearCart();
+                  },
                   icon: Icon(MyAppIcons.trash),
                 )
               ],
@@ -31,15 +43,27 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: cartProvider.getCartItems.length,
                   itemBuilder: (BuildContext ctx, int index) {
-                    return CartFull();
+                    return ChangeNotifierProvider.value(
+                      value: cartProvider.getCartItems.values.toList()[index],
+                      child: CartFull(
+                        productId:
+                            cartProvider.getCartItems.keys.toList()[index],
+                        // id:  cartProvider.getCartItems.values.toList()[index].id,
+                        // productId: cartProvider.getCartItems.keys.toList()[index],
+                        // price: cartProvider.getCartItems.values.toList()[index].price,
+                        // title: cartProvider.getCartItems.values.toList()[index].title,
+                        // imageUrl: cartProvider.getCartItems.values.toList()[index].imageUrl,
+                        // quatity: cartProvider.getCartItems.values.toList()[index].quantity,
+                      ),
+                    );
                   }),
             ),
           );
   }
 
-  Widget checkoutSection(BuildContext ctx) {
+  Widget checkoutSection(BuildContext ctx, double subtotal) {
     return Container(
         decoration: BoxDecoration(
           border: Border(
@@ -76,7 +100,6 @@ class CartScreen extends StatelessWidget {
                           'Checkout',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            // ignore: deprecated_member_use
                               color: Theme.of(ctx).textSelectionColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600),
@@ -90,13 +113,12 @@ class CartScreen extends StatelessWidget {
               Text(
                 'Total:',
                 style: TextStyle(
-                  // ignore: deprecated_member_use
                     color: Theme.of(ctx).textSelectionColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600),
               ),
               Text(
-                'US \$179.0',
+                'US ${subtotal.toStringAsFixed(3)}',
                 //textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.blue,

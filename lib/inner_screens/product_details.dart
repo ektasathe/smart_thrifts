@@ -1,27 +1,13 @@
-/*
-import 'dart:ui';
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/provider/dark_theme_provider.dart';
-import 'package:ECommerceApp/provider/products.dart';
-import 'package:ECommerceApp/screens/cart.dart';
-import 'package:ECommerceApp/screens/wishlist.dart';
-import 'package:ECommerceApp/widget/feeds_products.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-*/
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/provider/card_provider.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/wishlist.dart';
 import 'package:thrift_books/widget/feeds_products.dart';
-
 
 class ProductDetails extends StatefulWidget {
   static const routeName = '/ProductDetails';
@@ -38,8 +24,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     final productsData = Provider.of<Products>(context);
     final productId = ModalRoute.of(context).settings.arguments as String;
+    final cartProvider = Provider.of<CartProvider>(context);
     print('productId $productId');
-    final prodAttr =productsData.findById(productId);
+    final prodAttr = productsData.findById(productId);
     final productsList = productsData.products;
     return Scaffold(
       body: Stack(
@@ -170,9 +157,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ),
                       _details(themeState.darkTheme, 'Brand: ', prodAttr.brand),
-                      _details(themeState.darkTheme, 'Quantity: ', '${prodAttr.quantity}'),
-                      _details(themeState.darkTheme, 'Category: ', prodAttr.productCategoryName),
-                      _details(themeState.darkTheme, 'Popularity: ', prodAttr.isPopular? 'Popular' : 'Barely known'),
+                      _details(themeState.darkTheme, 'Quantity: ',
+                          '${prodAttr.quantity}'),
+                      _details(themeState.darkTheme, 'Category: ',
+                          prodAttr.productCategoryName),
+                      _details(themeState.darkTheme, 'Popularity: ',
+                          prodAttr.isPopular ? 'Popular' : 'Barely known'),
                       SizedBox(
                         height: 15,
                       ),
@@ -195,7 +185,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
-                                  // ignore: deprecated_member_use
+                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -300,9 +290,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
                       color: Colors.redAccent.shade400,
-                      onPressed: () {},
+                      onPressed:
+                          cartProvider.getCartItems.containsKey(productId)
+                              ? () {}
+                              : () {
+                                  cartProvider.addProductToCart(
+                                      productId,
+                                      prodAttr.price,
+                                      prodAttr.title,
+                                      prodAttr.imageUrl);
+                                },
                       child: Text(
-                        'Add to Cart'.toUpperCase(),
+                        cartProvider.getCartItems.containsKey(productId)
+                            ? 'In Cart'
+                            : 'Add to Cart'.toUpperCase(),
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
@@ -374,7 +375,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
-              // ignore: deprecated_member_use
+                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),
