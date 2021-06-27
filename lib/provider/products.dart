@@ -1,6 +1,10 @@
+/*
 import 'package:ECommerceApp/models/product.dart';
 import 'package:ECommerceApp/widget/popular_products.dart';
+import 'package:flutter/cupertino.dart';  */
+
 import 'package:flutter/cupertino.dart';
+import 'package:thrift_books/models/product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _products = [

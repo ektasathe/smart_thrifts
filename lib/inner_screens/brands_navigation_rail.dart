@@ -1,8 +1,12 @@
-import 'package:ECommerceApp/provider/products.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/provider/products.dart';
+//import 'package:thrift_books/inner_screens/brands_rail_widgets.dart';
 
 import 'brands_rail_widget.dart';
+
 
 class BrandNavigationRailScreen extends StatefulWidget {
   BrandNavigationRailScreen({Key key}) : super(key: key);

@@ -1,17 +1,19 @@
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/inner_screens/brands_navigation_rail.dart';
-import 'package:ECommerceApp/provider/products.dart';
-import 'package:ECommerceApp/widget/backlayer.dart';
-import 'package:ECommerceApp/widget/category.dart';
-import 'package:ECommerceApp/widget/popular_products.dart';
 import 'package:backdrop/app_bar.dart';
 import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
-import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:backdrop/sub_header.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-
+import 'package:thrift_books/consts/colors.dart';
+//import 'package:thrift_books/inner_screens/brands_navigation_rail%20copy.dart';
+import 'package:thrift_books/inner_screens/brands_navigation_rail.dart';
+import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/widget/backlayer.dart';
+import 'package:thrift_books/widget/category.dart';
+import 'package:thrift_books/widget/popular_products.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -127,6 +129,7 @@ class _HomeState extends State<Home> {
                           TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                     Spacer(),
+                    // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed(
@@ -187,6 +190,7 @@ class _HomeState extends State<Home> {
                           TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                     Spacer(),
+                    // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {},
                       child: Text(

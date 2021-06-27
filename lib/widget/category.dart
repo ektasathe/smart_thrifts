@@ -1,6 +1,7 @@
-import 'package:ECommerceApp/inner_screens/categories_feeds.dart';
-import 'package:ECommerceApp/screens/feeds.dart';
 import 'package:flutter/material.dart';
+import 'package:thrift_books/inner_screens/categories_feeds.dart';
+import 'package:thrift_books/screens/feeds.dart';
+
 
 class CategoryWidget extends StatefulWidget {
   CategoryWidget({Key key, this.index}) : super(key: key);
@@ -75,6 +76,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
+                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
               ),
             ),

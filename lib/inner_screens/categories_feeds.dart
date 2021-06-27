@@ -1,8 +1,15 @@
+/*
 import 'package:ECommerceApp/models/product.dart';
 import 'package:ECommerceApp/provider/products.dart';
 import 'package:ECommerceApp/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart'; */
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/widget/feeds_products.dart';
 
 class CategoriesFeedsScreen extends StatelessWidget {
   

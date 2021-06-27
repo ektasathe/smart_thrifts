@@ -1,7 +1,15 @@
+/*
 import 'package:ECommerceApp/inner_screens/product_details.dart';
 import 'package:ECommerceApp/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+*/
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thrift_books/inner_screens/product_details.dart';
+import 'package:thrift_books/models/product.dart';
+
 
 class BrandsNavigationRail extends StatelessWidget {
   @override
@@ -61,6 +69,7 @@ class BrandsNavigationRail extends StatelessWidget {
                       maxLines: 4,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
+                          // ignore: deprecated_member_use
                           color: Theme.of(context).textSelectionColor),
                     ),
                     SizedBox(

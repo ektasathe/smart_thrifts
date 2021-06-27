@@ -1,11 +1,11 @@
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/provider/dark_theme_provider.dart';
-import 'package:ECommerceApp/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/screens/wishlist.dart';
 
 class UserInfo extends StatefulWidget {
   @override

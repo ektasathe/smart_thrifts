@@ -1,8 +1,8 @@
-import 'package:ECommerceApp/inner_screens/product_details.dart';
-import 'package:ECommerceApp/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/inner_screens/product_details.dart';
+import 'package:thrift_books/models/product.dart';
 
 class PopularProducts extends StatelessWidget {
   // final String imageUrl;
@@ -75,6 +75,7 @@ class PopularProducts extends StatelessWidget {
                         child: Text(
                           '\$ ${productsAttributes.price}',
                           style: TextStyle(
+                            // ignore: deprecated_member_use
                             color: Theme.of(context).textSelectionColor,
                           ),
                         ),

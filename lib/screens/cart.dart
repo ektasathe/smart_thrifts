@@ -1,8 +1,14 @@
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/widget/cart_empty.dart';
-import 'package:ECommerceApp/widget/cart_full.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/widget/cart_empty.dart';
+
+import '../widget/cart_empty.dart';
+import '../widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/CartScreen';
@@ -70,6 +76,7 @@ class CartScreen extends StatelessWidget {
                           'Checkout',
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            // ignore: deprecated_member_use
                               color: Theme.of(ctx).textSelectionColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600),
@@ -83,6 +90,7 @@ class CartScreen extends StatelessWidget {
               Text(
                 'Total:',
                 style: TextStyle(
+                  // ignore: deprecated_member_use
                     color: Theme.of(ctx).textSelectionColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600),

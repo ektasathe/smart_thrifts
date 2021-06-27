@@ -1,8 +1,9 @@
-import 'package:ECommerceApp/inner_screens/product_details.dart';
-import 'package:ECommerceApp/models/product.dart';
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/inner_screens/product_details.dart';
+import 'package:thrift_books/models/product.dart';
+
 
 class FeedProducts extends StatefulWidget {
   @override

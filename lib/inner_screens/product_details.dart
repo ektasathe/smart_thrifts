@@ -1,3 +1,4 @@
+/*
 import 'dart:ui';
 import 'package:ECommerceApp/consts/colors.dart';
 import 'package:ECommerceApp/consts/my_icons.dart';
@@ -8,6 +9,19 @@ import 'package:ECommerceApp/screens/wishlist.dart';
 import 'package:ECommerceApp/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+*/
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/wishlist.dart';
+import 'package:thrift_books/widget/feeds_products.dart';
+
 
 class ProductDetails extends StatefulWidget {
   static const routeName = '/ProductDetails';
@@ -181,6 +195,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
+                                  // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -280,6 +295,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 3,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -296,6 +312,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 2,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -307,6 +324,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             'Buy now'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
+                                // ignore: deprecated_member_use
                                 color: Theme.of(context).textSelectionColor),
                           ),
                           SizedBox(
@@ -356,6 +374,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
+              // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),

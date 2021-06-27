@@ -1,7 +1,10 @@
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/screens/search.dart';
-import 'package:ECommerceApp/screens/user_info.dart';
 import 'package:flutter/material.dart';
+
+import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/search.dart';
+import 'package:thrift_books/screens/user_info.dart';
+
 
 import 'cart.dart';
 import 'feeds.dart';
@@ -68,31 +71,37 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
             child: BottomNavigationBar(
               onTap: _selectPage,
               backgroundColor: Theme.of(context).primaryColor,
+              // ignore: deprecated_member_use
               unselectedItemColor: Theme.of(context).textSelectionColor,
               selectedItemColor: Colors.purple,
               currentIndex: _selectedPageIndex,
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(MyAppIcons.home),
+                  // ignore: deprecated_member_use
                   title: Text('Home'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(MyAppIcons.rss),
+                  // ignore: deprecated_member_use
                   title: Text('Feeds'),
                 ),
                 BottomNavigationBarItem(
                   activeIcon: null,
                   icon: Icon(null),
+                  // ignore: deprecated_member_use
                   title: Text('Search'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     MyAppIcons.bag,
                   ),
+                  // ignore: deprecated_member_use
                   title: Text('Cart'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(MyAppIcons.user),
+                  // ignore: deprecated_member_use
                   title: Text('User'),
                 ),
               ],

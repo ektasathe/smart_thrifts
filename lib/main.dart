@@ -1,15 +1,18 @@
-import 'package:ECommerceApp/consts/theme_data.dart';
-import 'package:ECommerceApp/inner_screens/product_details.dart';
-import 'package:ECommerceApp/provider/dark_theme_provider.dart';
-import 'package:ECommerceApp/provider/products.dart';
-import 'package:ECommerceApp/screens/bottom_bar.dart';
-import 'package:ECommerceApp/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/consts/theme_data.dart';
+import 'package:thrift_books/inner_screens/product_details.dart';
+import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/screens/bottom_bar.dart';
+import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/feeds.dart';
+import 'package:thrift_books/screens/wishlist.dart';
+
 import 'inner_screens/brands_navigation_rail.dart';
 import 'inner_screens/categories_feeds.dart';
-import 'screens/cart.dart';
-import 'screens/feeds.dart';
+
+//import 'inner_screens/brands_navigation_rail copy.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,8 +1,9 @@
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/provider/dark_theme_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/provider/dark_theme_provider.dart';
 
 class CartFull extends StatefulWidget {
   @override

@@ -1,8 +1,11 @@
-import 'package:ECommerceApp/models/product.dart';
-import 'package:ECommerceApp/provider/products.dart';
-import 'package:ECommerceApp/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_books/models/product.dart';
+import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/widget/feeds_products.dart';
+
 
 class Feeds extends StatelessWidget {
   

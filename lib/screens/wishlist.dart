@@ -1,9 +1,10 @@
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/widget/cart_empty.dart';
-import 'package:ECommerceApp/widget/cart_full.dart';
-import 'package:ECommerceApp/widget/wishlist_empty.dart';
-import 'package:ECommerceApp/widget/wishlist_full.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:flutter_icons/flutter_icons.dart';
+
+import 'package:thrift_books/widget/wishlist_empty.dart';
+import 'package:thrift_books/widget/wishlist_full.dart';
 
 class WishlistScreen extends StatelessWidget {
   static const routeName = '/WishlistScreen';

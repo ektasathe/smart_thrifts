@@ -1,7 +1,7 @@
-import 'package:ECommerceApp/consts/colors.dart';
-import 'package:ECommerceApp/consts/my_icons.dart';
-import 'package:ECommerceApp/screens/cart.dart';
-import 'package:ECommerceApp/screens/feeds.dart';
+import 'package:thrift_books/consts/colors.dart';
+import 'package:thrift_books/consts/my_icons.dart';
+import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/feeds.dart';
 import 'package:flutter/material.dart';
 
 class BackLayerMenu extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:ECommerceApp/consts/colors.dart';
+import 'package:thrift_books/consts/colors.dart';
 import 'package:flutter/material.dart';
 
 class WishlistFull extends StatefulWidget {
