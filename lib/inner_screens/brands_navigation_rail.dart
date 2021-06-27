@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/provider/products.dart';
 //import 'package:thrift_books/inner_screens/brands_rail_widgets.dart';
 
 import 'brands_rail_widget.dart';
-
 
 class BrandNavigationRailScreen extends StatefulWidget {
   BrandNavigationRailScreen({Key key}) : super(key: key);
@@ -209,10 +206,11 @@ class ContentSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('brand $brand');
     final productsData = Provider.of<Products>(context, listen: false);
     final productsBrand = productsData.findByBrand(brand);
-    if(brand=='All'){
-      for(int i=0; i<productsData.products.length;i++){
+    if (brand == 'All') {
+      for (int i = 0; i < productsData.products.length; i++) {
         productsBrand.add(productsData.products[i]);
       }
     }

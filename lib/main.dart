@@ -11,6 +11,7 @@ import 'package:thrift_books/screens/wishlist.dart';
 
 import 'inner_screens/brands_navigation_rail.dart';
 import 'inner_screens/categories_feeds.dart';
+import 'provider/card_provider.dart';
 
 //import 'inner_screens/brands_navigation_rail copy.dart';
 
@@ -46,7 +47,10 @@ class _MyAppState extends State<MyApp> {
           }),
           ChangeNotifierProvider(
             create: (_) => Products(),
-          )
+          ),
+          ChangeNotifierProvider(
+            create: (_) => CartProvider(),
+          ),
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {

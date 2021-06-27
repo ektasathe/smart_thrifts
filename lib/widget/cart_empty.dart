@@ -20,7 +20,7 @@ class CartEmpty extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('android/assets/images/emptycart.png'),
+              image: AssetImage('lib/assets/images/emptycart.png'),
             ),
           ),
         ),
@@ -28,9 +28,9 @@ class CartEmpty extends StatelessWidget {
           'Your Cart Is Empty',
           textAlign: TextAlign.center,
           style: TextStyle(
-            // ignore: deprecated_member_use
+              // ignore: deprecated_member_use
               color: Theme.of(context).textSelectionColor,
-              fontSize: 32,  //     36,
+              fontSize: 32, //     36,
               fontWeight: FontWeight.w600),
         ),
         SizedBox(
@@ -43,7 +43,7 @@ class CartEmpty extends StatelessWidget {
               color: themeChange.darkTheme
                   ? Theme.of(context).disabledColor
                   : ColorsConsts.subTitle,
-              fontSize: 22,   //26,
+              fontSize: 22, //26,
               fontWeight: FontWeight.w600),
         ),
         SizedBox(
@@ -64,7 +64,7 @@ class CartEmpty extends StatelessWidget {
               'Shop now'.toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                // ignore: deprecated_member_use
+                  // ignore: deprecated_member_use
                   color: Theme.of(context).textSelectionColor,
                   fontSize: 26,
                   fontWeight: FontWeight.w600),

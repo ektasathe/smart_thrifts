@@ -55,26 +55,27 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - android/assets/images/emptycart.png
-    - android/assets/images/empty_cart.png
-    - android/assets/images/b1.jpg
-    - android/assets/images/b2.jpg
-    - android/assets/images/b3.jpg
-    - android/assets/images/b4.jpg
-    - android/assets/images/book1.jpg
-    - android/assets/images/book2.jpg
-    - android/assets/images/book3.jpg
-    - android/assets/images/book4.jpg
-    - android/assets/images/geo.jpg
-    - android/assets/images/history.jpg
-    - android/assets/images/maths.jpg
-    - android/assets/images/sci.jpg
-    - android/assets/images/space.jpg
-    - android/assets/images/eng.jpg
-    - android/assets/images/lawyer.jpg
-    - android/assets/images/scientist.jpg
-    - android/assets/images/police.jpg
-    - android/assets/images/wishlist_empty.png
+  - lib/assets/images/b1.jpg
+  - lib/assets/images/emptycart.png
+  - lib/assets/images/empty_cart.png
+  - lib/assets/images/b1.jpg
+  - lib/assets/images/b2.jpg
+  - lib/assets/images/b3.jpg
+  - lib/assets/images/b4.jpg
+  - lib/assets/images/book1.jpg
+  - lib/assets/images/book2.jpg
+  - lib/assets/images/book3.jpg
+  - lib/assets/images/book4.jpg
+  - lib/assets/images/geo.jpg
+  - lib/assets/images/history.jpg
+  - lib/assets/images/maths.jpg
+  - lib/assets/images/sci.jpg
+  - lib/assets/images/space.jpg
+  - lib/assets/images/eng.jpg
+  - lib/assets/images/lawyer.jpg
+  - lib/assets/images/scientist.jpg
+  - lib/assets/images/police.jpg
+  - lib/assets/images/wishlist_empty.png
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

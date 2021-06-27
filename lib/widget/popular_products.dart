@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/models/product.dart';
+import 'package:thrift_books/provider/card_provider.dart';
 
 class PopularProducts extends StatelessWidget {
   // final String imageUrl;
@@ -16,6 +17,7 @@ class PopularProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productsAttributes = Provider.of<Product>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -38,7 +40,8 @@ class PopularProducts extends StatelessWidget {
               ),
               bottomRight: Radius.circular(10.0),
             ),
-             onTap: () =>Navigator.pushNamed(context, ProductDetails.routeName, arguments:productsAttributes.id ),
+            onTap: () => Navigator.pushNamed(context, ProductDetails.routeName,
+                arguments: productsAttributes.id),
             child: Column(
               children: [
                 Stack(
@@ -51,8 +54,8 @@ class PopularProducts extends StatelessWidget {
                               fit: BoxFit.contain)),
                     ),
                     Positioned(
-                      right: 12,
-                      top: 10,
+                      right: 10,
+                      top: 8,
                       child: Icon(
                         Entypo.star,
                         color: Colors.grey.shade800,
@@ -60,7 +63,7 @@ class PopularProducts extends StatelessWidget {
                     ),
                     Positioned(
                       right: 10,
-                      top: 7,
+                      top: 8,
                       child: Icon(
                         Entypo.star_outlined,
                         color: Colors.white,
@@ -75,7 +78,6 @@ class PopularProducts extends StatelessWidget {
                         child: Text(
                           '\$ ${productsAttributes.price}',
                           style: TextStyle(
-                            // ignore: deprecated_member_use
                             color: Theme.of(context).textSelectionColor,
                           ),
                         ),
@@ -116,12 +118,26 @@ class PopularProducts extends StatelessWidget {
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: cartProvider.getCartItems.containsKey(
+                                  productsAttributes.id,
+                                )
+                                    ? () {}
+                                    : () {
+                                        cartProvider.addProductToCart(
+                                            productsAttributes.id,
+                                            productsAttributes.price,
+                                            productsAttributes.title,
+                                            productsAttributes.imageUrl);
+                                      },
                                 borderRadius: BorderRadius.circular(30.0),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Icon(
-                                    MaterialCommunityIcons.cart_plus,
+                                    cartProvider.getCartItems.containsKey(
+                                      productsAttributes.id,
+                                    )
+                                        ? MaterialCommunityIcons.check_all
+                                        : MaterialCommunityIcons.cart_plus,
                                     size: 25,
                                     color: Colors.black,
                                   ),
