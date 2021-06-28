@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/screens/feeds.dart';
 
 class WishlistEmpty extends StatelessWidget {
   @override
@@ -28,7 +29,6 @@ class WishlistEmpty extends StatelessWidget {
           'Your Wishlist Is Empty',
           textAlign: TextAlign.center,
           style: TextStyle(
-            // ignore: deprecated_member_use
               color: Theme.of(context).textSelectionColor,
               fontSize: 36,
               fontWeight: FontWeight.w600),
@@ -52,9 +52,8 @@ class WishlistEmpty extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.06,
-          // ignore: deprecated_member_use
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () => {Navigator.of(context).pushNamed(Feeds.routeName)},
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(color: Colors.red),
@@ -64,7 +63,6 @@ class WishlistEmpty extends StatelessWidget {
               'Add a wish'.toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                // ignore: deprecated_member_use
                   color: Theme.of(context).textSelectionColor,
                   fontSize: 26,
                   fontWeight: FontWeight.w600),

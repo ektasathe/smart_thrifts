@@ -4,6 +4,7 @@ import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/card_provider.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/wishlist.dart';
@@ -22,9 +23,11 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
-    final productsData = Provider.of<Products>(context);
+    final productsData = Provider.of<Products>(context, listen: false);
     final productId = ModalRoute.of(context).settings.arguments as String;
     final cartProvider = Provider.of<CartProvider>(context);
+
+    final favsProvider = Provider.of<FavsProvider>(context);
     print('productId $productId');
     final prodAttr = productsData.findById(productId);
     final productsList = productsData.products;
@@ -185,7 +188,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
-                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -285,7 +287,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 3,
                   child: Container(
                     height: 50,
-                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -302,7 +303,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 },
                       child: Text(
                         cartProvider.getCartItems.containsKey(productId)
-                            ? 'In Cart'
+                            ? 'In cart'
                             : 'Add to Cart'.toUpperCase(),
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
@@ -313,7 +314,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 2,
                   child: Container(
                     height: 50,
-                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -325,7 +325,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                             'Buy now'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
-                                // ignore: deprecated_member_use
                                 color: Theme.of(context).textSelectionColor),
                           ),
                           SizedBox(
@@ -350,11 +349,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                     height: 50,
                     child: InkWell(
                       splashColor: ColorsConsts.favColor,
-                      onTap: () {},
+                      onTap: () {
+                        favsProvider.addAndRemoveFromFav(productId,
+                            prodAttr.price, prodAttr.title, prodAttr.imageUrl);
+                      },
                       child: Center(
                         child: Icon(
-                          MyAppIcons.wishlist,
-                          color: ColorsConsts.white,
+                          favsProvider.getFavsItems.containsKey(productId)
+                              ? Icons.favorite
+                              : MyAppIcons.wishlist,
+                          color:
+                              favsProvider.getFavsItems.containsKey(productId)
+                                  ? Colors.red
+                                  : ColorsConsts.white,
                         ),
                       ),
                     ),
@@ -375,7 +382,6 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
-                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),
