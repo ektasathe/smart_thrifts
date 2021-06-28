@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/wishlist.dart';
 
 class UserInfo extends StatefulWidget {
@@ -126,21 +127,23 @@ class _UserInfoState extends State<UserInfo> {
                       child: InkWell(
                         splashColor: Theme.of(context).splashColor,
                         child: ListTile(
-                          onTap: () => Navigator.of(context).pushNamed(
-                            WishlistScreen.routeName
-                          ),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(WishlistScreen.routeName),
                           title: Text('Wishlist'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.wishlist),
                         ),
                       ),
                     ),
-                     Material(
+                    Material(
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: Theme.of(context).splashColor,
                         child: ListTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(CartScreen.routeName);
+                          },
                           title: Text('Cart'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.cart),

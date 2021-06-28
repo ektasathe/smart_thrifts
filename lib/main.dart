@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/theme_data.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
+import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/screens/bottom_bar.dart';
 import 'package:thrift_books/screens/cart.dart';
@@ -50,6 +51,9 @@ class _MyAppState extends State<MyApp> {
           ),
           ChangeNotifierProvider(
             create: (_) => CartProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => FavsProvider(),
           ),
         ],
         child:

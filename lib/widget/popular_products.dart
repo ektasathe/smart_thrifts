@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/models/product.dart';
 import 'package:thrift_books/provider/card_provider.dart';
+import 'package:thrift_books/provider/favs_provider.dart';
 
 class PopularProducts extends StatelessWidget {
   // final String imageUrl;
@@ -18,6 +19,7 @@ class PopularProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsAttributes = Provider.of<Product>(context);
     final cartProvider = Provider.of<CartProvider>(context);
+    final favsProvider = Provider.of<FavsProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -58,7 +60,10 @@ class PopularProducts extends StatelessWidget {
                       top: 8,
                       child: Icon(
                         Entypo.star,
-                        color: Colors.grey.shade800,
+                        color: favsProvider.getFavsItems
+                                .containsKey(productsAttributes.id)
+                            ? Colors.red
+                            : Colors.grey.shade800,
                       ),
                     ),
                     Positioned(
