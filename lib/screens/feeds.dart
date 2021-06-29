@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/models/product.dart';
-import 'package:thrift_books/provider/card_provider.dart';
+import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
 import 'package:thrift_books/screens/wishlist.dart';
@@ -29,8 +29,7 @@ class Feeds extends StatelessWidget {
         backgroundColor: Theme.of(context).cardColor,
         title: Text('Feeds'),
         actions: [
-          Consumer<FavsProvider>
-            (
+          Consumer<FavsProvider>(
             builder: (_, favs, ch) => Badge(
               badgeColor: ColorsConsts.cartBadgeColor,
               animationType: BadgeAnimationType.slide,
@@ -51,8 +50,7 @@ class Feeds extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<CartProvider>
-            (
+          Consumer<CartProvider>(
             builder: (_, cart, ch) => Badge(
               badgeColor: ColorsConsts.cartBadgeColor,
               animationType: BadgeAnimationType.slide,
@@ -73,7 +71,8 @@ class Feeds extends StatelessWidget {
               ),
             ),
           ),
-        ],),
+        ],
+      ),
       body: GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 240 / 450,

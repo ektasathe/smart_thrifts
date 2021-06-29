@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/models/product.dart';
-
+import 'package:thrift_books/widget/feeds.dialog.dart';
 
 class FeedProducts extends StatefulWidget {
   @override
@@ -107,7 +107,14 @@ class _FeedProductsState extends State<FeedProducts> {
                         Material(
                           color: Colors.transparent,
                           child: InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        FeedDialog(
+                                          productId: productsAttributes.id,
+                                        ));
+                              },
                               borderRadius: BorderRadius.circular(18.0),
                               child: Icon(
                                 Icons.more_horiz,

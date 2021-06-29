@@ -3,7 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/models/product.dart';
-import 'package:thrift_books/provider/card_provider.dart';
+import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 
 class PopularProducts extends StatelessWidget {

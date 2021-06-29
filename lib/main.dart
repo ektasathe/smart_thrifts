@@ -5,14 +5,19 @@ import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/screens/auth/login.dart';
+import 'package:thrift_books/screens/auth/sign_up.dart';
+// ignore: unused_import
 import 'package:thrift_books/screens/bottom_bar.dart';
 import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/feeds.dart';
+import 'package:thrift_books/screens/landing_page.dart';
+import 'package:thrift_books/screens/main_screen.dart';
 import 'package:thrift_books/screens/wishlist.dart';
 
 import 'inner_screens/brands_navigation_rail.dart';
 import 'inner_screens/categories_feeds.dart';
-import 'provider/card_provider.dart';
+import 'provider/cart_provider.dart';
 
 //import 'inner_screens/brands_navigation_rail copy.dart';
 
@@ -61,7 +66,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            home: BottomBarScreen(),
+            home: LandingPage(),
             //initialRoute: '/',
             routes: {
               //   '/': (ctx) => LandingPage(),
@@ -72,6 +77,9 @@ class _MyAppState extends State<MyApp> {
               WishlistScreen.routeName: (ctx) => WishlistScreen(),
               ProductDetails.routeName: (ctx) => ProductDetails(),
               CategoriesFeedsScreen.routeName: (ctx) => CategoriesFeedsScreen(),
+              LoginScreen.routeName: (ctx) => LoginScreen(),
+              SignUpScreen.routeName: (ctx) => SignUpScreen(),
+              BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
             },
           );
         }));

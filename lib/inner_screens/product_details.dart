@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/provider/card_provider.dart';
+import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
@@ -189,6 +189,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Text(
                                 'No reviews yet',
                                 style: TextStyle(
+                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).textSelectionColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 21.0),
@@ -261,8 +262,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
                 ),
                 actions: <Widget>[
-                  Consumer<FavsProvider>
-                    (
+                  Consumer<FavsProvider>(
                     builder: (_, favs, ch) => Badge(
                       badgeColor: ColorsConsts.cartBadgeColor,
                       animationType: BadgeAnimationType.slide,
@@ -270,7 +270,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       position: BadgePosition.topEnd(top: 5, end: 7),
                       badgeContent: Text(
                         favs.getFavsItems.length.toString(),
-                      style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white),
                       ),
                       child: IconButton(
                         icon: Icon(
@@ -278,13 +278,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           color: ColorsConsts.favColor,
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed(WishlistScreen.routeName);
+                          Navigator.of(context)
+                              .pushNamed(WishlistScreen.routeName);
                         },
                       ),
                     ),
                   ),
-                  Consumer<CartProvider>
-                    (
+                  Consumer<CartProvider>(
                     builder: (_, cart, ch) => Badge(
                       badgeColor: ColorsConsts.cartBadgeColor,
                       animationType: BadgeAnimationType.slide,
@@ -305,7 +305,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                   ),
-
                 ]),
           ),
           Align(
@@ -315,6 +314,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 3,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -342,6 +342,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   flex: 2,
                   child: Container(
                     height: 50,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(side: BorderSide.none),
@@ -353,7 +354,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             'Buy now'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
-
+                                // ignore: deprecated_member_use
                                 color: Theme.of(context).textSelectionColor),
                           ),
                           SizedBox(
@@ -411,6 +412,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             title,
             style: TextStyle(
+                // ignore: deprecated_member_use
                 color: Theme.of(context).textSelectionColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 21.0),

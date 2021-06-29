@@ -5,12 +5,12 @@ import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/search.dart';
 import 'package:thrift_books/screens/user_info.dart';
 
-
 import 'cart.dart';
 import 'feeds.dart';
 import 'home.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  static const routeName = '/BottomBarScreen';
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }

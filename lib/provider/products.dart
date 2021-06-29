@@ -1,10 +1,7 @@
-/*
-import 'package:ECommerceApp/models/product.dart';
-import 'package:ECommerceApp/widget/popular_products.dart';
-import 'package:flutter/cupertino.dart';  */
-
-import 'package:flutter/cupertino.dart';
 import 'package:thrift_books/models/product.dart';
+// ignore: unused_import
+import 'package:thrift_books/widget/popular_products.dart';
+import 'package:flutter/cupertino.dart';
 
 class Products with ChangeNotifier {
   List<Product> _products = [
@@ -616,5 +613,13 @@ class Products with ChangeNotifier {
             element.brand.toLowerCase().contains(brandName.toLowerCase()))
         .toList();
     return _categoryList;
+  }
+
+  List<Product> searchQuery(String searchText) {
+    List _searchList = _products
+        .where((element) =>
+            element.title.toLowerCase().contains(searchText.toLowerCase()))
+        .toList();
+    return _searchList;
   }
 }
