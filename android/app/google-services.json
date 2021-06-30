@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "471532654399",
+    "project_id": "bookproject-5a1bb",
+    "storage_bucket": "bookproject-5a1bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471532654399:android:5be16ec51141c4d9f4cd8a",
+        "android_client_info": {
+          "package_name": "com.example.thrift_books"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471532654399-j033m6ul5tpp04qcvumq9mhadj7m1fim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thrift_books",
+            "certificate_hash": "354eb9322d3f2c34953fe51536716aaf592e011f"
+          }
+        },
+        {
+          "client_id": "471532654399-avjgi0rqnk5l02hjqmlp9htk6jrnjqek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsYZ0qx2bAHsjFNQp1Eww4NC2bs2b6oYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471532654399-avjgi0rqnk5l02hjqmlp9htk6jrnjqek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

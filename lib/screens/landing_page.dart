@@ -9,6 +9,7 @@ import 'package:thrift_books/screens/bottom_bar.dart';
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
+  //future: Firebase.initilizeApp(),
 }
 
 class _LandingPageState extends State<LandingPage>
