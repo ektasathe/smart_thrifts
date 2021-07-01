@@ -4,6 +4,7 @@ import 'package:thrift_books/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:thrift_books/services/global_method.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   File _pickedImage;
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  GlobalMethods _globalMethods = GlobalMethods();
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -35,12 +38,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  void _submitForm() {
+  void _submitForm() async{
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
+      setState(() {
+        _isLoading = true;
+      });
       _formKey.currentState.save();
-      _auth.createUserWithEmailAndPassword(email: _emailAddress.toLowerCase().trim(), password: _password.trim());
+      try{
+        await  _auth.createUserWithEmailAndPassword(
+            email: _emailAddress.toLowerCase().trim(),
+            password: _password.trim());
+      }catch(error){
+        _globalMethods.authErrorHandle(error.message, context);
+        print('error occured ${error.message}');
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -343,6 +360,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SizedBox(width: 10),
+                            _isLoading
+                                ? CircularProgressIndicator()
+                            :
                             ElevatedButton(
                                 style: ButtonStyle(
                                     shape: MaterialStateProperty.all<

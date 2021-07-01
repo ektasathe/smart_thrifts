@@ -14,6 +14,7 @@ import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/feeds.dart';
 import 'package:thrift_books/screens/landing_page.dart';
 import 'package:thrift_books/screens/main_screen.dart';
+import 'package:thrift_books/screens/user_state.dart';
 import 'package:thrift_books/screens/wishlist.dart';
 
 import 'inner_screens/brands_navigation_rail.dart';
@@ -91,7 +92,7 @@ class _MyAppState extends State<MyApp> {
                       title: 'Flutter Demo',
                       theme:
                       Styles.themeData(themeChangeProvider.darkTheme, context),
-                      home: LandingPage(), // home: UserState(),
+                      home: UserState(), // home: UserState(),
                       //initialRoute: '/',
                       routes: {
                         //   '/': (ctx) => LandingPage(),
