@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -5,6 +6,10 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:thrift_books/screens/auth/login.dart';
 import 'package:thrift_books/screens/auth/sign_up.dart';
 import 'package:thrift_books/screens/bottom_bar.dart';
+import 'package:thrift_books/services/global_method.dart';
+
+import 'package:google_sign_in/google_sign_in.dart';
+
 
 class LandingPage extends StatefulWidget {
   @override
@@ -22,6 +27,10 @@ class _LandingPageState extends State<LandingPage>
     'https://e-shopy.org/wp-content/uploads/2020/08/shop.jpeg',
     'https://e-shopy.org/wp-content/uploads/2020/08/shop.jpeg',
   ];
+  /*
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  GlobalMethods _globalMethods = GlobalMethods();
+*/
   @override
   void initState() {
     super.initState();
@@ -47,7 +56,30 @@ class _LandingPageState extends State<LandingPage>
     _animationController.dispose();
     super.dispose();
   }
+/*
+  Future<void> _googleSignIn() async {
+    final googleSignIn = GoogleSignIn();
+    final googleAccount = await googleSignIn.signIn();
+    if (googleAccount != null) {
+      final googleAuth = await googleAccount.authentication;
+      if (googleAuth.accessToken != null && googleAuth.idToken != null) {
 
+
+          final authResult = await _auth.signInWithCredential(
+              GoogleAuthProvider.credential(
+                  idToken: googleAuth.idToken,
+                  accessToken: googleAuth.accessToken));
+
+
+
+
+
+
+
+      }
+    }
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +96,7 @@ class _LandingPageState extends State<LandingPage>
         width: double.infinity,
         alignment: FractionalOffset(_animation.value, 0),
       ),
-      Container(
+         Container(
         margin: EdgeInsets.only(top: 30),
         width: double.infinity,
         child: Column(
@@ -205,7 +237,7 @@ class _LandingPageState extends State<LandingPage>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               OutlineButton(
-                onPressed: () {},
+                onPressed:  () {},     //_googleSignIn,
                 shape: StadiumBorder(),
                 highlightedBorderColor: Colors.red.shade200,
                 borderSide: BorderSide(width: 2, color: Colors.red),
