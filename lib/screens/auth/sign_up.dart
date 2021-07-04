@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -23,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _emailAddress = '';
   String _password = '';
   String _fullName = '';
+  String url;
   int _phoneNumber;
   File _pickedImage;
   final _formKey = GlobalKey<FormState>();
@@ -38,19 +42,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  void _submitForm() async{
+  void _submitForm() async {
     final isValid = _formKey.currentState.validate();
+
     FocusScope.of(context).unfocus();
+    var date = DateTime.now().toString();
+    var dateparse = DateTime.parse(date);
+    var formattedDate = "${dateparse.day}-${dateparse.month}-${dateparse.year}";
     if (isValid) {
-      setState(() {
-        _isLoading = true;
-      });
       _formKey.currentState.save();
-      try{
-        await  _auth.createUserWithEmailAndPassword(
-            email: _emailAddress.toLowerCase().trim(),
-            password: _password.trim());
-      }catch(error){
+      try {
+        if (_pickedImage == null) {
+          _globalMethods.authErrorHandle('Please pick an image', context);
+        } else {
+          setState(() {
+            _isLoading = true;
+          });
+          final ref = FirebaseStorage.instance
+              .ref()
+              .child('usersImages')
+              .child(_fullName + '.jpg');
+          await ref.putFile(_pickedImage);
+          url = await ref.getDownloadURL();
+          await _auth.createUserWithEmailAndPassword(
+              email: _emailAddress.toLowerCase().trim(),
+              password: _password.trim());
+          final User user = _auth.currentUser;
+          final _uid = user.uid;
+          user.updateProfile(photoURL: url, displayName: _fullName);
+          user.reload();
+          await FirebaseFirestore.instance.collection('users').doc(_uid).set({
+            'id': _uid,
+            'name': _fullName,
+            'email': _emailAddress,
+            'phoneNumber': _phoneNumber,
+            'imageUrl': url,
+            'joinedAt': formattedDate,
+            'createdAt': Timestamp.now(),
+          });
+          Navigator.canPop(context) ? Navigator.pop(context) : null;
+        }
+      } catch (error) {
         _globalMethods.authErrorHandle(error.message, context);
         print('error occured ${error.message}');
       } finally {
@@ -117,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
           ),
-          SingleChildScrollView (
+          SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
@@ -126,7 +158,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Stack(
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                       child: CircleAvatar(
                         radius: 71,
                         backgroundColor: ColorsConsts.gradiendLEnd,
@@ -179,8 +212,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   'Camera',
                                                   style: TextStyle(
                                                       fontSize: 18,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: ColorsConsts.title),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          ColorsConsts.title),
                                                 )
                                               ],
                                             ),
@@ -202,8 +237,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   'Gallery',
                                                   style: TextStyle(
                                                       fontSize: 18,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: ColorsConsts.title),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          ColorsConsts.title),
                                                 )
                                               ],
                                             ),
@@ -225,7 +262,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   'Remove',
                                                   style: TextStyle(
                                                       fontSize: 18,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                       color: Colors.red),
                                                 )
                                               ],
@@ -362,36 +400,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             SizedBox(width: 10),
                             _isLoading
                                 ? CircularProgressIndicator()
-                            :
-                            ElevatedButton(
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(
-                                        color: ColorsConsts.backgroundColor),
-                                  ),
-                                )),
-                                onPressed: _submitForm,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Sign up',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Icon(
-                                      Feather.user,
-                                      size: 18,
-                                    )
-                                  ],
-                                )),
+                                : ElevatedButton(
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                        side: BorderSide(
+                                            color:
+                                                ColorsConsts.backgroundColor),
+                                      ),
+                                    )),
+                                    onPressed: _submitForm,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Sign up',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Icon(
+                                          Feather.user,
+                                          size: 18,
+                                        )
+                                      ],
+                                    )),
                             SizedBox(width: 20),
                           ],
                         ),

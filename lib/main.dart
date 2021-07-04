@@ -6,20 +6,19 @@ import 'package:thrift_books/inner_screens/product_details.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
+import 'package:thrift_books/screens/auth/forget_password.dart';
 import 'package:thrift_books/screens/auth/login.dart';
 import 'package:thrift_books/screens/auth/sign_up.dart';
 // ignore: unused_import
 import 'package:thrift_books/screens/bottom_bar.dart';
 import 'package:thrift_books/screens/cart.dart';
 import 'package:thrift_books/screens/feeds.dart';
-import 'package:thrift_books/screens/landing_page.dart';
-import 'package:thrift_books/screens/main_screen.dart';
 import 'package:thrift_books/screens/user_state.dart';
 import 'package:thrift_books/screens/wishlist.dart';
 
 import 'inner_screens/brands_navigation_rail.dart';
 import 'inner_screens/categories_feeds.dart';
-import 'inner_screens/upload_product_form.dart';
+import 'screens/upload_product_form.dart';
 import 'provider/cart_provider.dart';
 
 //import 'inner_screens/brands_navigation_rail copy.dart';
@@ -39,7 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   void getCurrentAppTheme() async {
     themeChangeProvider.darkTheme =
-    await themeChangeProvider.darkThemePreferences.getTheme();
+        await themeChangeProvider.darkThemePreferences.getTheme();
   }
 
   @override
@@ -88,29 +87,30 @@ class _MyAppState extends State<MyApp> {
               ],
               child: Consumer<DarkThemeProvider>(
                   builder: (context, themeData, child) {
-                    return MaterialApp(
-                      title: 'Flutter Demo',
-                      theme:
+                return MaterialApp(
+                  title: 'Flutter Demo',
+                  theme:
                       Styles.themeData(themeChangeProvider.darkTheme, context),
-                      home: UserState(), // home: UserState(),
-                      //initialRoute: '/',
-                      routes: {
-                        //   '/': (ctx) => LandingPage(),
-                        BrandNavigationRailScreen.routeName: (ctx) =>
-                            BrandNavigationRailScreen(),
-                        CartScreen.routeName: (ctx) => CartScreen(),
-                        Feeds.routeName: (ctx) => Feeds(),
-                        WishlistScreen.routeName: (ctx) => WishlistScreen(),
-                        ProductDetails.routeName: (ctx) => ProductDetails(),
-                        CategoriesFeedsScreen.routeName: (ctx) =>
-                            CategoriesFeedsScreen(),
-                        LoginScreen.routeName: (ctx) => LoginScreen(),
-                        SignUpScreen.routeName: (ctx) => SignUpScreen(),
-                        BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
-                        UploadProductForm.routeName: (ctx) => UploadProductForm(),
-                      },
-                    );
-                  }));
+                  home: UserState(), // home: UserState(),
+                  //initialRoute: '/',
+                  routes: {
+                    //   '/': (ctx) => LandingPage(),
+                    BrandNavigationRailScreen.routeName: (ctx) =>
+                        BrandNavigationRailScreen(),
+                    CartScreen.routeName: (ctx) => CartScreen(),
+                    Feeds.routeName: (ctx) => Feeds(),
+                    WishlistScreen.routeName: (ctx) => WishlistScreen(),
+                    ProductDetails.routeName: (ctx) => ProductDetails(),
+                    CategoriesFeedsScreen.routeName: (ctx) =>
+                        CategoriesFeedsScreen(),
+                    LoginScreen.routeName: (ctx) => LoginScreen(),
+                    SignUpScreen.routeName: (ctx) => SignUpScreen(),
+                    BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+                    UploadProductForm.routeName: (ctx) => UploadProductForm(),
+                    ForgetPassword.routeName: (ctx) => ForgetPassword(),
+                  },
+                );
+              }));
         });
   }
 }

@@ -235,9 +235,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Container(
                   margin: EdgeInsets.only(bottom: 30),
                   width: double.infinity,
-                  height: 340,
+                  height: 350,
                   child: ListView.builder(
-                    itemCount: 7,
+                    itemCount:
+                        productsList.length < 7 ? productsList.length : 7,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext ctx, int index) {
                       return ChangeNotifierProvider.value(
