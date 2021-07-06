@@ -4,7 +4,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/inner_screens/product_details.dart';
-import 'package:thrift_books/models/card_attr.dart';
+import 'package:thrift_books/models/cart_attr.dart';
 import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 import 'package:thrift_books/services/global_method.dart';

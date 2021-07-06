@@ -1,19 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/cart_provider.dart';
+import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/services/global_method.dart';
-import 'package:thrift_books/widget/cart_empty.dart';
+import 'package:thrift_books/screens/cart/cart_empty.dart';
+import 'package:thrift_books/services/payment.dart';
+import 'package:uuid/uuid.dart';
 
-import '../widget/cart_empty.dart';
-import '../widget/cart_full.dart';
+import 'cart_empty.dart';
+import 'cart_full.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
+  //To be known 1) the amount must be an integer 2) the amount must not be double 3) the minimum amount should be less than 0.5 $
   static const routeName = '/CartScreen';
+
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    StripeService.init();
+  }
+
+  void payWithCard({int amount}) async {
+    ProgressDialog dialog = ProgressDialog(context);
+    dialog.style(message: 'Please wait...');
+    await dialog.show();
+    var response = await StripeService.payWithNewCard(
+        currency: 'USD', amount: amount.toString());
+    await dialog.hide();
+    print('response : ${response.message}');
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(response.message),
+      duration: Duration(milliseconds: response.success == true ? 1200 : 3000),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
@@ -64,6 +99,9 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget checkoutSection(BuildContext ctx, double subtotal) {
+    final cartProvider = Provider.of<CartProvider>(context);
+    var uuid = Uuid();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     return Container(
         decoration: BoxDecoration(
           border: Border(
@@ -92,7 +130,35 @@ class CartScreen extends StatelessWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30),
-                      onTap: () {},
+                      onTap: () async {
+                        // double amountInCents = subtotal * 1000;
+                        // int intengerAmount = (amountInCents / 10).ceil();
+                        // payWithCard(amount: intengerAmount);
+
+                        User user = _auth.currentUser;
+                        final _uid = user.uid;
+                        cartProvider.getCartItems
+                            .forEach((key, orderValue) async {
+                          final orderId = uuid.v4();
+                          try {
+                            await FirebaseFirestore.instance
+                                .collection('order')
+                                .doc(orderId)
+                                .set({
+                              'orderId': orderId,
+                              'userId': _uid,
+                              'productId': orderValue.productId,
+                              'title': orderValue.title,
+                              'price': orderValue.price * orderValue.quantity,
+                              'imageUrl': orderValue.imageUrl,
+                              'quantity': orderValue.quantity,
+                              'orderDate': Timestamp.now(),
+                            });
+                          } catch (err) {
+                            print('error occured $err');
+                          }
+                        });
+                      },
                       splashColor: Theme.of(ctx).splashColor,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

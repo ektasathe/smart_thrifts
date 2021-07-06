@@ -7,8 +7,8 @@ import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/services/global_method.dart';
 
-import 'package:thrift_books/widget/wishlist_empty.dart';
-import 'package:thrift_books/widget/wishlist_full.dart';
+import 'package:thrift_books/screens/wishlist/wishlist_empty.dart';
+import 'package:thrift_books/screens/wishlist/wishlist_full.dart';
 
 class WishlistScreen extends StatelessWidget {
   static const routeName = '/WishlistScreen';

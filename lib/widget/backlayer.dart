@@ -1,6 +1,6 @@
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/cart/cart.dart';
 import 'package:thrift_books/screens/feeds.dart';
 import 'package:flutter/material.dart';
 

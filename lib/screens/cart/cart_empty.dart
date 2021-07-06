@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
 
+import '../feeds.dart';
+
 class CartEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,9 @@ class CartEmpty extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.06,
           // ignore: deprecated_member_use
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(Feeds.routeName);
+            },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: BorderSide(color: Colors.red),

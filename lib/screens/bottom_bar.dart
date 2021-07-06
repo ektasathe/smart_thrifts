@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:thrift_books/consts/my_icons.dart';
-import 'package:thrift_books/screens/cart.dart';
+import 'package:thrift_books/screens/cart/cart.dart';
 import 'package:thrift_books/screens/search.dart';
 import 'package:thrift_books/screens/user_info.dart';
 
-import 'cart.dart';
+import 'cart/cart.dart';
 import 'feeds.dart';
 import 'home.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:thrift_books/models/card_attr.dart';
+import 'package:thrift_books/models/cart_attr.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartAttr> _cartItems = {};
@@ -24,6 +24,7 @@ class CartProvider with ChangeNotifier {
           productId,
           (exitingCartItem) => CartAttr(
               id: exitingCartItem.id,
+              productId: exitingCartItem.productId,
               title: exitingCartItem.title,
               price: exitingCartItem.price,
               quantity: exitingCartItem.quantity + 1,
@@ -33,6 +34,7 @@ class CartProvider with ChangeNotifier {
           productId,
           () => CartAttr(
               id: DateTime.now().toString(),
+              productId: productId,
               title: title,
               price: price,
               quantity: 1,
@@ -49,6 +51,7 @@ class CartProvider with ChangeNotifier {
           productId,
           (exitingCartItem) => CartAttr(
               id: exitingCartItem.id,
+              productId: exitingCartItem.productId,
               title: exitingCartItem.title,
               price: exitingCartItem.price,
               quantity: exitingCartItem.quantity - 1,

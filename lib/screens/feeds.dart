@@ -9,10 +9,10 @@ import 'package:thrift_books/models/product.dart';
 import 'package:thrift_books/provider/cart_provider.dart';
 import 'package:thrift_books/provider/favs_provider.dart';
 import 'package:thrift_books/provider/products.dart';
-import 'package:thrift_books/screens/wishlist.dart';
+import 'package:thrift_books/screens/wishlist/wishlist.dart';
 import 'package:thrift_books/widget/feeds_products.dart';
 
-import 'cart.dart';
+import 'cart/cart.dart';
 
 class Feeds extends StatelessWidget {
   static const routeName = '/Feeds';

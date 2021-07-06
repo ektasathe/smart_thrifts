@@ -2,13 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:thrift_books/consts/colors.dart';
 import 'package:thrift_books/consts/my_icons.dart';
 import 'package:thrift_books/provider/dark_theme_provider.dart';
-import 'package:thrift_books/screens/cart.dart';
-import 'package:thrift_books/screens/wishlist.dart';
+import 'package:thrift_books/screens/cart/cart.dart';
+import 'package:thrift_books/screens/wishlist/wishlist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
+
+import 'orders/order.dart';
 
 class UserInfo extends StatefulWidget {
   @override
@@ -178,6 +180,19 @@ class _UserInfoState extends State<UserInfo> {
                           title: Text('Cart'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.cart),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(OrderScreen.routeName),
+                          title: Text('My Orders'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.bag),
                         ),
                       ),
                     ),
