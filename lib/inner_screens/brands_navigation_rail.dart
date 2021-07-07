@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_books/provider/products.dart';
 //import 'package:thrift_books/inner_screens/brands_rail_widgets.dart';
@@ -214,7 +215,7 @@ class ContentSpace extends StatelessWidget {
         productsBrand.add(productsData.products[i]);
       }
     }
-    print('productsBrand ${productsBrand[0].imageUrl}');
+   // print('productsBrand ${productsBrand[0].imageUrl}');
     print('brand $brand');
     return Expanded(
       child: Padding(
@@ -222,7 +223,23 @@ class ContentSpace extends StatelessWidget {
         child: MediaQuery.removePadding(
           removeTop: true,
           context: context,
-          child: ListView.builder(
+          child: productsBrand.isEmpty ?
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              Icon(Feather.database, size: 80,),
+              SizedBox(height: 40,),
+              Text(
+                'No products related to this field',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            ],
+          )
+              :
+          ListView.builder(
             itemCount: productsBrand.length,
             itemBuilder: (BuildContext context, int index) =>
                 ChangeNotifierProvider.value(
